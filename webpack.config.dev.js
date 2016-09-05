@@ -22,7 +22,8 @@ module.exports = {
     new webpack.NoErrorsPlugin()
   ],
   module: {
-    loaders: [{
+    loaders: [
+    {
       test: /\.js$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
@@ -30,6 +31,11 @@ module.exports = {
     {
        test: /\.scss$/, 
         loader: 'style!css!postcss!sass' 
+    },
+    {
+            test: /\.(png|jpe?g)$/,
+            loader: 'file-loader?limit=8192'
+
     }]
   }
 };

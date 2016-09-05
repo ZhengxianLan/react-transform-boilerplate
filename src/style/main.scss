@@ -1,7 +1,82 @@
 html{
-  font-size: 30px;
-  body{
-    background-color: goldenrod;
-    display: flex;
+  font-family: sans-serif;
+  background: #fafafa;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  -webkit-font-smoothing: antialiased;
+  color:#727272;
+}
+
+ul{
+  padding: 0;
+  list-style-type: none;
+}
+
+.app-wrap{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.app-header{
+  flex-shrink:0;
+  height: 64px;
+  z-index: 4;
+  background: #00bcd4;
+  box-shadow: 0 1px 6px rga(0,0,0,0.12),0 1px 4px rga(0,0,0,0.24);
+}
+/*
+background-image: none
+background-position: 0% 0%
+background-size: auto auto
+background-repeat: repeat
+background-origin: padding-box
+background-clip: border-box
+background-attachment: scroll
+background-color: transparent
+center center cover no-repeat fixed
+*/
+/*
+font-style
+font-variant
+font-weight
+font-size/line-height
+font-family
+example: "italic small-caps bold 12px arial,sans-serif"
+*/
+.home{
+  flex-grow:1;
+  background: url('../assets/home-bg.jpg') center center/cover no-repeat fixed; 
+  z-index: -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .slogan{
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font: 500 50px;
+    width: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    background: rgba(0,0,0,.5);
   }
+}
+
+.app-footer{
+  background: #00bcd4;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align:center;
+  font-size:25px;
+  color:#fff;
+  flex-shrink: 0;
 }

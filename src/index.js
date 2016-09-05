@@ -1,4 +1,9 @@
-import Point from './App';
+import React from 'react';
+import { render } from 'react-dom';
 
-var pnt = new Point(1,2);
-console.log(pnt.toString());
+import App from './App';
+
+import './style/main.scss';
+
+render(<App />,document.getElementById('root'));
+
