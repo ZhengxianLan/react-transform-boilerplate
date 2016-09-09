@@ -10,8 +10,10 @@ class App extends Component {
     return (
       <div className="app-wrap">
           <Navbar />
-        <Home/>
-        <div className="app-footer">Footer</div>
+    {
+      this.props.children
+    }
+    <div className="app-footer">Footer</div>
       </div>
     );
   }

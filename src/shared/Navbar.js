@@ -6,6 +6,19 @@ import Tab from 'material-ui/lib/tabs/tab';
 
 
 class Navbar extends Component {
+
+  /* 必须加这个 constructor且包含 context 参数方可在 es6 语法内使用 context 
+  [this.context.router is undefined in ES6 class constructor](https://github.com/reactjs/react-router/issues/1059) 
+  */
+  constructor(props, context) {
+    super(props);
+  }
+
+  _handleTabsChange(value) {
+    /* 这里把tab的值传递给 react-router，依托router来切换页面 */
+    this.context.router.push(value);
+  }
+
   render() {
     let styles = {
       tabs: {
@@ -25,14 +38,19 @@ class Navbar extends Component {
     };
     return (
       <div className='app-header'>
-         <Tabs tabItemContainerStyle={{backgroundColor:'transparent'}} style={styles.tabs} inkBarStyle={styles.inkBar}>
-           <Tab style={styles.tab} label='Home'></Tab>
-           <Tab style={styles.tab} label='Account'></Tab>
-           <Tab style={styles.tab} label='About'></Tab>
+        {/* 注意onChange要大写 */}
+         <Tabs onChange={this._handleTabsChange.bind(this)} tabItemContainerStyle={{backgroundColor:'transparent'}} style={styles.tabs} inkBarStyle={styles.inkBar}>
+       {/* 此处的value要与 routes.js 内的 path 对应 */}
+           <Tab style={styles.tab} value='/home' label='Home'></Tab>
+           <Tab style={styles.tab} value='/account' label='Account'></Tab>
+           <Tab style={styles.tab} value='/about' label='About'></Tab>
          </Tabs>
        </div>
     );
   }
 }
 
+Navbar.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 export default Navbar;

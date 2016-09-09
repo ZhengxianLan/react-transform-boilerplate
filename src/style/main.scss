@@ -80,3 +80,7 @@ example: "italic small-caps bold 12px arial,sans-serif"
   color:#fff;
   flex-shrink: 0;
 }
+
+.about,.account{
+  flex-grow:1
+}
