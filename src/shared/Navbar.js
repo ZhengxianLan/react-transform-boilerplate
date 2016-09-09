@@ -12,6 +12,31 @@ class Navbar extends Component {
   */
   constructor(props, context) {
     super(props);
+    this.state = {
+      value: '/home'
+    }
+  }
+
+  componentWillMount() {
+    this.setState({
+      value: this._getSelectedIndex()
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      value: this._getSelectedIndex()
+    });
+  }
+
+  _getSelectedIndex() {
+    let tabs = ['/home', '/account', '/about'];
+    for (var i = tabs.length - 1; i >= 0; i--) {
+      if (this.context.router.isActive(tabs[i])) {
+        return tabs[i];
+      }
+    }
+    return tabs[0];
   }
 
   _handleTabsChange(value) {
@@ -39,7 +64,9 @@ class Navbar extends Component {
     return (
       <div className='app-header'>
         {/* 注意onChange要大写 */}
-         <Tabs onChange={this._handleTabsChange.bind(this)} tabItemContainerStyle={{backgroundColor:'transparent'}} style={styles.tabs} inkBarStyle={styles.inkBar}>
+         <Tabs onChange={this._handleTabsChange.bind(this)}
+          value={this.state.value} 
+          tabItemContainerStyle={{backgroundColor:'transparent'}} style={styles.tabs} inkBarStyle={styles.inkBar}>
        {/* 此处的value要与 routes.js 内的 path 对应 */}
            <Tab style={styles.tab} value='/home' label='Home'></Tab>
            <Tab style={styles.tab} value='/account' label='Account'></Tab>
