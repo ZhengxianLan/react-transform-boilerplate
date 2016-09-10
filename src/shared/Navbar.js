@@ -30,13 +30,9 @@ class Navbar extends Component {
   }
 
   _getSelectedIndex() {
+
     let tabs = ['/home', '/account', '/about'];
-    for (var i = tabs.length - 1; i >= 0; i--) {
-      if (this.context.router.isActive(tabs[i])) {
-        return tabs[i];
-      }
-    }
-    return tabs[0];
+    return tabs.filter((tab) => this.context.router.isActive(tab))[0];
   }
 
   _handleTabsChange(value) {
