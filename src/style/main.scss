@@ -84,3 +84,6 @@ example: "italic small-caps bold 12px arial,sans-serif"
 .about,.account{
   flex-grow:1
 }
+
+@import 'about';
+@import 'account';
