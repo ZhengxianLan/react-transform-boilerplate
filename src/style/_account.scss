@@ -38,9 +38,30 @@
         font-size: 16px;
         margin-bottom: 10px;    
       }
-
     }
   }
+}
 
-
+.user-repos {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border-top: 1px solid rgba(0,0,0,.1);
+  li {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    div {
+      display: flex;
+      justify-content: space-around;
+    }
+    .name {
+      font-size: 16px;
+      font-weight: 500;
+      color: #00bcd4;
+    }
+    .desc {
+      font-size: 15px;
+    }
+    .lang {
+      font-size: 14px;
+    }
+  }
 }

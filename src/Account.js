@@ -8,7 +8,9 @@ import Card from 'material-ui/lib/card/card';
 import axios from 'axios';
 import isEmpty from 'lodash/lang/isEmpty';
 import UserInfo from './user/UserInfo';
+import Repos from './user/Repos';
 
+import github from './utils/github';
 
 class Account extends Component {
 
@@ -18,28 +20,32 @@ class Account extends Component {
     /* 在 constructor 内不可调用 setState() */
     // this.setState({user:{}});
     this.state = {
-      user:{}
+      user:{},
+      repos:{}
     }
   }
 
   _handleSubmit(e){
     e.preventDefault();
     const account = this.refs.account.getValue();
-    axios.get(`https://api.github.com/users/${account}`)
-      .then((res)=>{
-        this.setState({user:res.data})
-      })
-      .catch((res)=>{
-        console.log(res)
+    github.getGithubInfo(account)
+    .then((data)=>{
+      this.setState({
+        user: data.user,
+        repos: data.repos
       });
+    });  
   }
 
   render() {  
     let GithubInfo;
     if(!isEmpty(this.state.user)){
       GithubInfo = (
-        <UserInfo userInfo = {this.state.user} />
-      );
+        <div>
+          <UserInfo userInfo = {this.state.user} />
+          <Repos repos = {this.state.repos} />
+        </div>
+      );  
     }
     return (
       <div className="account">
@@ -48,8 +54,8 @@ class Account extends Component {
           <TextField hintText="Your Github Account" ref="account"/>
           <FlatButton primary={true} label="Search Github" type="submit"/>
         </form>
-        </Card>
         {GithubInfo}
+        </Card>
       </div>
     );
   }
